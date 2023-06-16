@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>ماشین حساب</title>
+</head>
+<body>
+    <div class="container">
+            <form action="" name="form" id="myForm">
+                    <div class="display">
+                        <input type="text" placeholder="0" name="displayREsult" id="displayResult"/>
+                    </div>
+                    <input type="button" onclick="reset()" value="C" class="red" name="" id="">
+                    <h2>Javascript calcuter</h2>
+
+                    <div class="row">
+                        <input type="button" name="b7" value="7" onclick="addTocalculater(b7.value)">
+                        <input type="button" name="b8" value="8" onclick="addTocalculater(b8.value)">
+                        <input type="button" name="b9" value="9" onclick="addTocalculater(b9.value)">
+                        <input type="button" name="addb" value="+" onclick="addTocalculater(addb.value)">
+                        <input type="button" name="abs" value="|x|" onclick="machCalculater('abs')">
+                        <input type="button" name="ceil" value="ce" onclick="machCalculater('ceil')">
+                    </div>
+
+                    <div class="row">
+                        <input type="button" name="b4" value="4" onclick="addTocalculater(b4.value)">
+                        <input type="button" name="b5" value="5" onclick="addTocalculater(b5.value)">
+                        <input type="button" name="b6" value="6" onclick="addTocalculater(b6.value)">
+                        <input type="button" name="subb" value="-" onclick="addTocalculater(subb.value)">
+                        <input type="button" name="sqrt" value="&radic;" onclick="machCalculater('sqrt')">
+                        <input type="button" name="floor" value="fl" onclick="machCalculater('floor')">
+                    </div>
+               
+                    <div class="row">
+                        <input type="button" name="b1" value="1" onclick="addTocalculater(b1.value)">
+                        <input type="button" name="b2" value="2" onclick="addTocalculater(b2.value)">
+                        <input type="button" name="b3" value="3" onclick="addTocalculater(b3.value)">
+                        <input type="button" name="mulb" value="*" onclick="addTocalculater(mulb.value)">
+                        <input type="button" name="round" value="r" onclick="machCalculater('round')">
+                        <input type="button" name="power" value="^" onclick="machCalculater('pow')">
+                    </div>
+
+                    <div class="row">
+                        <input type="button" name="b0" value="0" onclick="addTocalculater(b0.value)">
+                        <input type="button" name="potb" value="." onclick="addTocalculater(potb.value)">
+                        <input type="button" name="divb" value="/" onclick="addTocalculater(divb.value)">
+                        <input type="button"  class="green" value="="  onclick="finalize()">
+                    </div>
+
+            </form>
+   </div>
+
+    <script>
+        var powFlag = false;
+
+        function addTocalculater(value) {
+
+                document.getElementById('displayResult').value += value;
+               if(powFlag) {
+                    
+                    var numbers = document.getElementById('displayResult').value.split('^');
+                    document.getElementById('displayResult').value = Math.pow(numbers[0], numbers[1]);
+                    powFlag = false;
+
+               }
+        }
+
+        function finalize(){
+            document.getElementById('displayResult').value = eval(document.getElementById('displayResult').value);
+        }
+
+        function reset(){
+            document.getElementById('displayResult').value = '';
+
+        }
+
+        function machCalculater(mathFunc){
+
+                if(mathFunc == 'pow'){
+                    powFlag = true;
+                    document.getElementById('displayResult').value += '^';
+                }else {
+                var val = document.getElementById('displayResult').value;
+                document.getElementById('displayResult').value = Math[mathFunc](val);
+
+        }
+    }
+    </script>
+</body>
+</html>
